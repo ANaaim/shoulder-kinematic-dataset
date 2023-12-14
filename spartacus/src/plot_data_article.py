@@ -37,7 +37,7 @@ def plot_data_article(extracted_data, joint_to_plot, movement_to_plot=None):
 
     # Plot the data
     w, h = figaspect(0.2)
-    fig, ax = plt.subplots(1, 3, sharex=True, sharey="row", figsize=(w, h), squeeze=False)
+    fig, ax = plt.subplots(1, 3, sharex='all', sharey="row", figsize=(w, h), squeeze=False)
     fig.suptitle(name_figure)
     for i, article in enumerate(list_article):
         # Currently too much data in these articles
@@ -92,16 +92,17 @@ if __name__ == "__main__":
     # extracted_data.angle_translation = "angle"
     extracted_data = pd.read_pickle("my_data.pkl")
 
-    # Joint to plot
+    # Joint to plot : list of all available joints
     # array(['scapulothoracic', 'glenohumeral', 'acromioclavicular',
     #       'sternoclavicular'], dtype=object)
     joint_to_plot = "scapulothoracic"
 
+    # Movement to plot : list of all available movements
     # array(['frontal elevation', 'horizontal flexion', 'scapular elevation',
     #        'internal-external rotation 90 degree-abducted',
     #        'sagittal elevation',
     #        'internal-external rotation 0 degree-abducted'], dtype=object)
     movement_to_plot = "frontal elevation"
-    movement_to_plot = None
+    #movement_to_plot = None
 
     plot_data_article(extracted_data, joint_to_plot, movement_to_plot)
