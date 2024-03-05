@@ -18,6 +18,7 @@ extracted_data = load().import_confident_data()
 extracted_data.angle_translation = "angle"
 # TODO : do a function to change the name of the degree of freedom
 # Todo : Change the name of the function to be more clean ==> not draft anymore.
+# Todo : Export the data in a html file
 # Begin to check curves for outlier.
 for i in range(extracted_data.degree_of_freedom.size):
     if extracted_data.degree_of_freedom[i] == "1":
@@ -26,6 +27,7 @@ for i in range(extracted_data.degree_of_freedom.size):
         extracted_data.degree_of_freedom[i] = "abduction"
     elif extracted_data.degree_of_freedom[i] == "3":
         extracted_data.degree_of_freedom[i] = "external_rotation"
+
 app = Dash(__name__)
 
 app.layout = html.Div(
@@ -176,6 +178,7 @@ def update_line_chart(humeral_motion, joint, angle_translation):
         template="simple_white",
         boxgap=0.5,
     )
+    fig.write_html("plotly_graph.html")
     return fig
 
 
